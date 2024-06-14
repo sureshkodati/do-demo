@@ -27,7 +27,7 @@ jobs:
       
     - name: Build  the Docker image 
       run: |
-         tag_time=$(date +%s)
+         export tag_time=$(date +%s)
          echo $tag_time
          docker build . --file Dockerfile --tag  sureshkodati/do_demo:v$tag_time
          #docker tag  do_demo:$tag_time sureshkodati/do_demo:$tag_time
