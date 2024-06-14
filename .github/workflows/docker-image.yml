@@ -37,7 +37,7 @@ jobs:
       
     - name: Push image to docker hub
       run: |
-         docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKET_PASS }}
+         docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASS }}
          echo $?
          docker push do-demo:$(date +%s)
       
