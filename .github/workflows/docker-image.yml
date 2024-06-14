@@ -25,12 +25,19 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build  the Docker image 
+      run: docker build . --file Dockerfile --tag do-demo:$(date +%s)
+
     - name: list files
       run: |
         set -exo
         cd target
-        ls
+        #ls
         docker images
+      
+    - name: Push image to docker hub
+      run: |
+         docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKET_PAS }}
+         echo $?
+         docker push do-demo:$(date +%s)
       
