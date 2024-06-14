@@ -44,6 +44,8 @@ jobs:
       
     - name: Push image to docker hub
       run: |
+         source .env
+         echo $tag_time
          docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASS }}
          echo $?
          docker push sureshkodati/do_demo:$tag_time
