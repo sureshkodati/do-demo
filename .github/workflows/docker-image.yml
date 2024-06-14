@@ -28,7 +28,7 @@ jobs:
     - name: Build  the Docker image 
       run: |
          tag_time=$(date +%s)
-         docker build . --file Dockerfile --tag  "sureshkodati/do_demo:${tag_time}"
+         docker build . --file Dockerfile --tag  sureshkodati/do_demo:latest
          #docker tag  do_demo:$tag_time sureshkodati/do_demo:$tag_time
     - name: list files
       run: |
@@ -41,5 +41,5 @@ jobs:
       run: |
          docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASS }}
          echo $?
-         docker push sureshkodati/do_demo:$tag_time
+         docker push sureshkodati/do_demo:latest
       
