@@ -29,7 +29,7 @@ jobs:
       run: |
          tag_time=$(date +%s)
          docker build . --file Dockerfile --tag  do-demo:$tag_time
-         docker tag  do-demo:$tag_time sureshkodati/do-demo:$tag_time
+         docker tag  do-demo:$tag_time test/do-demo:$tag_time
     - name: list files
       run: |
         set -ex
