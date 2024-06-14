@@ -26,8 +26,9 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Build  the Docker image 
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/do-demo:$(date +%s)
-
+      run: |
+         docker build . --file Dockerfile --tag do-demo:$(date +%s)
+         docker tag  do-demo:$(date +%s) ${{ secrets.DOCKER_USER }}/do-demo:$(date +%s)
     - name: list files
       run: |
         set -ex
