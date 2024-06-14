@@ -42,5 +42,5 @@ jobs:
       run: |
          docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASS }}
          echo $?
-         docker push sureshkodati/do_demo:latest
+         docker push sureshkodati/do_demo:v$tag_time
       
