@@ -30,14 +30,14 @@ jobs:
 
     - name: list files
       run: |
-        set -exo
+        set -ex
         cd target
         #ls
         docker images
       
     - name: Push image to docker hub
       run: |
-         docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKET_PAS }}
+         docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKET_PASS }}
          echo $?
          docker push do-demo:$(date +%s)
       
