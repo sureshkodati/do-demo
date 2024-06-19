@@ -1,0 +1,35 @@
+name: Deploy Image in kubernets
+
+env:
+  CLUSTER_NAME: "dev-cluster"
+  CLUSTER_REGION: "us-central1-a"
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  manual_job:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0.8.1'
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: 'projects/686969711663/locations/global/workloadIdentityPools/github-pool/providers/github'
+        service_account: 'githubconnection@dev-project-426703.iam.gserviceaccount.com'
+        
+    - name: Connecting GKE Cluster
+      run: gcloud container clusters get-credentials ${{ env.CLUSTER_NAME }} --region ${{ env.CLUSTER_REGION }}
+      
+    - name: Installing and exposing pod
+      run: |
+        kubectl run testpod --image sureshkodati/do_demo:1718388723
+        kubectl expose pod/testpod testsvc --type=LoadBalancer --port=80 --targetPort=8282
+        kubectl get svc -o wide
