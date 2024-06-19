@@ -29,7 +29,7 @@ jobs:
       run: |
         curl -L https://storage.googleapis.com/kubernetes-release/release/v1.24.0/bin/linux/amd64/gke-gcloud-auth-plugin > gke-gcloud-auth-plugin
         chmod +x gke-gcloud-auth-plugin
-        mv gke-gcloud-auth-plugin ~/.local/bin/
+        # mv gke-gcloud-auth-plugin ~/.local/bin/
       
     - name: Connecting GKE Cluster
       run: gcloud container clusters get-credentials ${{ env.CLUSTER_NAME }} --region ${{ env.CLUSTER_REGION }}
