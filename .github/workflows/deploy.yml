@@ -49,6 +49,9 @@ jobs:
         sudo apt-get update -y
         sudo apt-get install helm -y
 
-    - name: Release the Helm chart
-      run: helm upgrade --install test-cd  ./configuration/test-cd
+    - name: Release the Helm chart in default namespace
+      run: helm upgrade --install test-cd  ./configuration/test-cd -n test
+
+    - name: Release the Helm chart in test namespace
+      run: helm upgrade --install test-cd  ./configuration/test-cd -n test
 
