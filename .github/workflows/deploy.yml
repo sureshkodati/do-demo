@@ -33,9 +33,9 @@ jobs:
       
     - name: Installing and exposing pod
       run: |
-        kuectl get pods
+        kubectl get pods
         kubectl get svc -o wide    
         kubectl run testpod --image sureshkodati/do_demo:1718388723
         kubectl expose pod/testpod --name test-lb --type=LoadBalancer --port=80 --target-port=8282
-        kuectl get pods
+        kubectl get pods
         kubectl get svc -o wide
