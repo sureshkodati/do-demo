@@ -33,8 +33,7 @@ jobs:
       
     - name: Installing and exposing pod
       run: |
-        kubectl get pods
-        kubectl get svc -o wide    
+        kubectl delete pod testpod
         kubectl run testpod --image sureshkodati/do_demo:1718388723
         kubectl expose pod/testpod --name test-lb --type=LoadBalancer --port=80 --target-port=8282
         kubectl get pods
