@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0.8.1'
@@ -50,11 +50,5 @@ jobs:
         sudo apt-get install helm -y
 
     - name: Release the Helm chart
-      run: |
-        pwd
-        ls
-        cd ..
-        pwd
-        ls
-        helm upgrade --install test-cd  ./configuration/test-cd
+      run: helm upgrade --install test-cd  ./configuration/test-cd
 
