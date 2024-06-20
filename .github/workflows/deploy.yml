@@ -31,11 +31,19 @@ jobs:
         cluster_name: ${{ env.CLUSTER_NAME }}
         location: ${{ env.CLUSTER_REGION }}
       
-    - name: Installing and exposing pod
+    # - name: Installing and exposing pod
+    #   run: |
+    #     kubectl run testpod --image sureshkodati/do_demo:1718388723
+    #     kubectl expose pod/testpod --name test-lb --type=LoadBalancer --port=80 --target-port=8282
+    #     kubectl get pods
+    #     kubectl get svc -o wide
+    #     sleep 10
+    #     kubectl get svc -o wide
+    - name: Installing Helm
+      run:  sudo apt-get update && sudo apt-get install -y helm
+
+    - name: Release the Helm chart
       run: |
-        kubectl run testpod --image sureshkodati/do_demo:1718388723
-        kubectl expose pod/testpod --name test-lb --type=LoadBalancer --port=80 --target-port=8282
-        kubectl get pods
-        kubectl get svc -o wide
-        sleep 10
-        kubectl get svc -o wide
+      pwd
+      helm upgrade --install test-cd  ./configuration/test-cd
+
