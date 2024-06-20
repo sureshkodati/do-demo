@@ -44,6 +44,6 @@ jobs:
 
     - name: Release the Helm chart
       run: |
-      pwd
-      helm upgrade --install test-cd  ./configuration/test-cd
+        pwd
+        helm upgrade --install test-cd  ./configuration/test-cd
 
