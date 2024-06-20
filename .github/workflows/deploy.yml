@@ -52,5 +52,7 @@ jobs:
         pwd
         ls
         cd ..
+        pwd
+        ls
         helm upgrade --install test-cd  ./configuration/test-cd
 
